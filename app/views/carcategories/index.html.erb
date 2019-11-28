@@ -1,0 +1,3 @@
+<% @carcategories.each do |c| %>
+    <%= link_to c.name, carcategory_path(c.id) %>
+<% end %>
