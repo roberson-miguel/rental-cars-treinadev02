@@ -1,3 +1,9 @@
-<% @carcategories.each do |c| %>
-    <%= link_to c.name, carcategory_path(c.id) %>
+<h3>Categorias de Carros</h3>
+
+<% if @carcategories.empty? %>
+    <p> Não existe Categorias de carros cadastradas</p>
+<% end %>
+
+<% @carcategories.each do |carcategory| %>
+    <%= link_to carcategory.name, carcategory_path(carcategory) %>
 <% end %>
