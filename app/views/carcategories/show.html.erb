@@ -1,6 +1,8 @@
+<h3>Categorias de Carros</h3>
 <h1>Nome: <%= @carcategory.name %></h1>
 <h1>Diaŕia: <%= @carcategory.daily_rate %></h1>
 <h1>Seguro: <%= @carcategory.car_insurance %></h1>
 <h1>Seguro Terceiros: <%= @carcategory.third_party_insurance%></h1>
 
 <%= link_to 'Voltar', root_path %>
+<%= link_to 'Editar', edit_carcategory_path(@carcategory) %>
