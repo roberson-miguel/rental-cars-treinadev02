@@ -25,7 +25,7 @@ class ManufacturersController < ApplicationController
         if @manufacturer.update(manufacturer_params)
             redirect_to @manufacturer
         else 
-            render new 
+            render :new 
         end
     end
 

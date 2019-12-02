@@ -1,4 +1,4 @@
-class CarcategoriesController < ApplicationController
+class CarCategoriesController < ApplicationController
     def index
         @carcategories = CarCategory.all
     end
@@ -12,26 +12,30 @@ class CarcategoriesController < ApplicationController
     end
 
     def create
-        @carcategory = CarCategory.create(carcategory_params)
+        @carcategory = CarCategory.create(category_params)
         redirect_to @carcategory
     end
 
     def edit
-        @carcategory= CarCategory.find(params[:id])
+        @carcategory = CarCategory.find(params[:id])
     end
 
     def update
         @carcategory = CarCategory.find(params[:id])
-        if @carcategory.update(carcategory_params)
+        if @carcategory.update(category_params)
             redirect_to @carcategory
         else 
-            render new 
+            render :new 
         end
     end
 
+
 private
 
-    def carcategory_params
-        params.require(:carcategory).permit(:name, :daily_rate, :car_insurance, :third_party_insurance)
+    def category_params
+       params.require(:car_category).permit(:name, :daily_rate, :car_insurance, :third_party_insurance)
     end
+
 end
+
+
