@@ -2,9 +2,7 @@ require 'rails_helper'
 
 feature 'Admin edit subsidiary' do
   scenario 'successfully' do
-    Subsidiary.create(name: 'Sao Paulo')
-    Subsidiary.create(cnpj: '05.370.840/0001-07')
-    Subsidiary.create(address: 'Rua da filial 1')
+    Subsidiary.create(name: 'Sao Paulo', cnpj: '05.370.840/0001-07', address: 'Rua da filial 1')
 
     visit root_path
     click_on 'Filiais'
@@ -19,6 +17,7 @@ feature 'Admin edit subsidiary' do
     expect(page).to have_content('05.370.840/0001-07')
     expect(page).to have_content('Rua da filial 1')
   end
+
 end
 
 
