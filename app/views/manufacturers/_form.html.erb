@@ -1,0 +1,12 @@
+
+<% if @manufacturer.errors.any? %>
+  <% @manufacturer.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<%= form_for (manufacturer) do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Enviar' %>
+<% end %>

@@ -12,8 +12,14 @@ class ManufacturersController < ApplicationController
     end
 
     def create
-        @manufacturer = Manufacturer.create(manufacturer_params)
-        redirect_to @manufacturer
+        @manufacturer = Manufacturer.new(manufacturer_params)
+        
+        if @manufacturer.save
+            redirect_to @manufacturer
+        else
+            flash.now[:alert] = 'Você deve informar o nome do fabricante'
+            render :new
+        end
     end
 
     def edit
@@ -24,8 +30,10 @@ class ManufacturersController < ApplicationController
         @manufacturer = Manufacturer.find(params[:id])
         if @manufacturer.update(manufacturer_params)
             redirect_to @manufacturer
+            flash[:notice] = "Fabricante alterado com sucesso"
         else 
-            render :new 
+            flash.now[:alert] = 'Nome já está em uso'
+            render :edit 
         end
     end
 
