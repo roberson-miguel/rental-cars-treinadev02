@@ -1,0 +1,15 @@
+<%= form_for (carmodel) do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+  <%= f.label :year, 'Ano' %>
+  <%= f.text_field :year %>
+  <%= f.label :Manufacturer, 'Fabricante' %>
+  <%= f.text_field :Manufacturer %>
+  <%= f.label :motorization, 'Cavalos' %>
+  <%= f.text_field :motorization %>
+  <%= f.label :CarCategory, 'Categoria' %>
+  <%= f.text_field :CarCategory %>
+  <%= f.label :fuel_type, 'Combustível' %>
+  <%= f.text_field :fuel_type %>
+  <%= f.submit 'Enviar' %>
+<% end %>

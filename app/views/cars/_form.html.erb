@@ -1,0 +1,19 @@
+<% if @car.errors.any? %>
+  <% @car.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<%= form_for (car) do |f| %>
+  <%= f.label :licence_plate, 'Placa' %>
+  <%= f.text_field :licence_plate %>
+  <%= f.label :color, 'Cor' %>
+  <%= f.text_field :color %>
+  <%= f.label :CarModel, 'Modelo' %>
+  <%= f.text_field :CarModel %>
+  <%= f.label :mileage, 'Quilometragem' %>
+  <%= f.text_field :mileage %>
+  <%= f.label :Subsidiary, 'Filial' %>
+  <%= f.text_field :Subsidiary %>
+  <%= f.submit 'Enviar' %>
+<% end %>

@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :subsidiaries
   resources :car_categories
   resources :clients
+  resources :car_models
+  resources :cars
 end
