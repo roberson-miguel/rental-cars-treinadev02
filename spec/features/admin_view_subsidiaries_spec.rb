@@ -26,7 +26,8 @@ feature 'Admin view subsidiaries' do
 
     expect(current_path).to eq root_path
   end
-    
+
+
   scenario 'if no exist subsidiary' do
       visit root_path
       click_on 'Filiais'
@@ -35,4 +36,5 @@ feature 'Admin view subsidiaries' do
       expect(page).to have_content('Não existe filiais cadastradas')
   end
 
+  
 end
