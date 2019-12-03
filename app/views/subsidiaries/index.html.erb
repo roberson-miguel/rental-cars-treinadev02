@@ -1,13 +1,13 @@
-<h3>Filiais</h3>
+<h3>Todas Filiais</h3>
 
-<%= link_to 'Registrar nova Filial', new_subsidiary_path %><br>
+<%= link_to 'Registrar nova Filial', new_subsidiary_path %><br><br>
 
 <% if @subsidiaries.empty? %>
     <p> Não existe filiais cadastradas</p>
 <% end %>
 
 <% @subsidiaries.each do |subsidiary| %>
-    <%= link_to subsidiary.name, subsidiary_path(subsidiary) %>
-    <%= link_to 'Deletar', subsidiary_path(subsidiary), method: :delete, data: { confirm: 'Confirma?' } %>
-    <br>
+    <%= link_to subsidiary.name, subsidiary_path(subsidiary) %><br>
 <% end %>
+
+<br><%= link_to 'Voltar', root_path %>

@@ -13,7 +13,7 @@ feature 'Admin delete subsidiaries ' do
     expect(page).to have_content('Rua da filial 1')
     expect(page).to have_link('Voltar')
     expect(page).to have_link('Deletar')
-     
+   
   end
 
 end

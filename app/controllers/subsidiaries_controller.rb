@@ -22,8 +22,9 @@ class SubsidiariesController < ApplicationController
     end
 
     def edit
-        @subsidiary = Subsidiary.find(params[:id])
+        @subsidiary = Subsidiary.find(params[:id]) 
     end
+
 
     def update
         @subsidiary = Subsidiary.find(params[:id])
@@ -39,7 +40,7 @@ class SubsidiariesController < ApplicationController
     def destroy
         @subsidiary = Subsidiary.find(params[:id])
         @subsidiary.destroy
-        redirect_to @subsidiary
+        redirect_to @subsidiary, notice: "Filial excluida com Sucesso"
     end
 
 
