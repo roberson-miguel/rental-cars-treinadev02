@@ -35,6 +35,8 @@ feature 'Admin view subsidiaries' do
   
       expect(page).to have_content('Não existe filiais cadastradas')
   end
-
   
+  
+
+
 end

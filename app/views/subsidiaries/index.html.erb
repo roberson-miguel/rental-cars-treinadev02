@@ -7,5 +7,7 @@
 <% end %>
 
 <% @subsidiaries.each do |subsidiary| %>
-    <%= link_to subsidiary.name, subsidiary_path(subsidiary) %><br>
+    <%= link_to subsidiary.name, subsidiary_path(subsidiary) %>
+    <%= link_to 'Deletar', subsidiary_path(subsidiary), method: :delete, data: { confirm: 'Confirma?' } %>
+    <br>
 <% end %>

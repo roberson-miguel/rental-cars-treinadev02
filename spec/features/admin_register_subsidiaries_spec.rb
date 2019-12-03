@@ -5,12 +5,14 @@ feature 'Admin register Subsidiaries' do
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova Filial'
+    
 
     fill_in 'Nome', with: 'Sao Paulo'
     fill_in 'CNPJ', with: '05.370.840/0001-07'
     fill_in 'Endereço', with: 'Rua da filial 1'
 
     click_on 'Enviar'
+  
 
     expect(page).to have_content('Sao Paulo')
     expect(page).to have_content('05.370.840/0001-07')
@@ -36,6 +38,7 @@ feature 'Admin register Subsidiaries' do
     fill_in 'CNPJ', with: '05.370.840/0001-07'
     fill_in 'Endereço', with: 'Rua da filial 1'
     click_on 'Enviar'
+    
 
     expect(page).to have_content('Nome ou CNPJ já está em uso')
   end
