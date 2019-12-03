@@ -1,0 +1,13 @@
+<h3>Clientes</h3>
+
+<%= link_to 'Novo Cliente', new_client_path %><br><br>
+
+<% if @clients.empty? %>
+    <p> Não existem clientes cadastradas</p>
+<% end %>
+
+<% @clients.each do |client| %>
+    <%= link_to client.name, client_path(client) %>
+    <%= link_to client.document, client_path(client) %>
+    <%= link_to client.email, client_path(client) %><br>
+<% end %>
