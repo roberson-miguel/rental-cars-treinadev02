@@ -9,11 +9,21 @@ class CarModelsController < ApplicationController
 
     def new
         @carmodel = CarModel.new
+        @manufacturers = Manufacturer.all
+        @car_categories = CarCategory.all
     end
 
     def create
         @carmodel = CarModel.create(carmodel_params)
-        redirect_to @carmodel
+        if @carmodel.save
+            flash[:notice] = "Modelo cadastrado com sucesso"
+            redirect_to @carmodel
+        else
+            @manufacturers = Manufacturer.all
+            @car_categories = CarCategory.all
+            flash[:alert] = 'Erro'
+            render :new
+        end
     end
 
     def edit
@@ -33,7 +43,7 @@ class CarModelsController < ApplicationController
 private
 
     def carmodel_params
-       params.require(:car_model).permit(:name, :year, :Manufacturer, :motorization, :CarCategory, :fuel_type)
+       params.require(:car_model).permit(:name, :year, :manufacturer_id, :motorization, :car_category_id, :fuel_type)
     end
 
 end
