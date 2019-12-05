@@ -33,9 +33,9 @@ feature 'Admin register cars' do
 
     fill_in 'Placa', with: ''
     fill_in 'Cor', with: ''
-    #select ' ', from: 'Modelo'
+    #select '', from: 'Modelo'
     fill_in 'Quilometragem', with: ''
-    #select ' ', from: 'Filial'
+    #select '', from: 'Filial'
     click_on 'Enviar'
   
     expect(page).to have_content('Não pode está em branco')
