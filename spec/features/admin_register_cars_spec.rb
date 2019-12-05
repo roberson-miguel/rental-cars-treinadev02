@@ -2,7 +2,9 @@ require 'rails_helper'
 
 feature 'Admin register cars' do
   scenario 'successfully' do
-    
+    CarModel.create(name: 'HB20', year:'2016', motorization:'1.0', fuel_type:'Gasolina' )
+    Subsidiary.create(name: 'São Paulo', cnpj:'05.372.840', address:'Rua motorizada, 456')
+
     visit root_path
     click_on 'Registrar Carros'
     click_on 'Registrar novo carro'
