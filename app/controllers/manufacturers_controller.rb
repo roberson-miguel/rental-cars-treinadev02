@@ -36,6 +36,12 @@ class ManufacturersController < ApplicationController
         end
     end
 
+    def destroy
+        @manufacturer = Manufacturer.find(params[:id])
+        @manufacturer.destroy
+        redirect_to @manufacturer, notice: "Fabricante excluido com Sucesso"
+    end
+
 private
 
     def manufacturer_params

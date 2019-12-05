@@ -3,7 +3,7 @@
 <h1>Ano: <%= @carmodel.year %></h1>
 <h1>Fabricante: <%= @carmodel.manufacturer.name %></h1>
 <h1>Cavalos: <%= @carmodel.motorization %></h1>
-<h1>Categoria: <%= @carmodel.car_category %></h1>
+<h1>Categoria: <%= @carmodel.car_category.name %></h1>
 <h1>Combustível: <%= @carmodel.fuel_type %></h1>
 
 <%= link_to 'Voltar', root_path %>

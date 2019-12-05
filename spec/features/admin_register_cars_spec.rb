@@ -2,8 +2,11 @@ require 'rails_helper'
 
 feature 'Admin register cars' do
   scenario 'successfully' do
-    CarModel.create(name: 'HB20', year:'2016', motorization:'1.0', fuel_type:'Gasolina' )
-    Subsidiary.create(name: 'São Paulo', cnpj:'05.372.840', address:'Rua motorizada, 456')
+    manufacturer = Manufacturer.create!(name: 'Chevrolet')
+    car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
+    car_model = CarModel.create!(name: 'HB20', year:'2016', motorization:'1.0', fuel_type:'Gasolina', manufacturer: manufacturer, car_category: car_category)
+    subsidiary = Subsidiary.create!(name: 'Sao Paulo', cnpj:'05.372.840', address:'Rua motorizada, 456')
+    
 
     visit root_path
     click_on 'Registrar Carros'
@@ -29,9 +32,9 @@ feature 'Admin register cars' do
     visit new_car_path
 
     fill_in 'Placa', with: ''
-    #fill_in 'Cor', with: ''
-    #select '', from: 'Modelo'
-    #fill_in 'Quilometragem', with: ''
+    fill_in 'Cor', with: ''
+    #select ' ', from: 'Modelo'
+    fill_in 'Quilometragem', with: ''
     #select ' ', from: 'Filial'
     click_on 'Enviar'
   
@@ -40,11 +43,15 @@ feature 'Admin register cars' do
   end
 
   scenario 'and licence_plate must be unique' do
-    Car.create(licence_plate: 'bcs-4567', color: 'azul', mileage: '15000')
-    Car.create(licence_plate: 'yoi-2355', color: 'preto', mileage: '35000')
-    CarModel.create(name: 'HB20', year: '2015', motorization:'1.0', fuel_type: 'Gasolina')
-    Subsidiary.create(name: 'Sao Paulo', cnpj:'05.372.840/0001-07', address: 'Rua do Motor, 123', )
-        
+    manufacturer = Manufacturer.create!(name: 'Chevrolet')
+    car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
+    car_model = CarModel.create!(name: 'HB20', year:'2016', motorization:'1.0', fuel_type:'Gasolina', manufacturer: manufacturer, car_category: car_category)
+    subsidiary = Subsidiary.create!(name: 'Sao Paulo', cnpj:'05.372.840', address:'Rua motorizada, 456')
+    
+   
+    Car.create(licence_plate: 'bcs-4567', color: 'azul', mileage: '15000', car_model: car_model, subsidiary: subsidiary)
+       
+    
     visit new_car_path
     fill_in 'Placa', with: 'bcs-4567'
     fill_in 'Cor', with: 'azul'
@@ -54,6 +61,7 @@ feature 'Admin register cars' do
     click_on 'Enviar'
 
     expect(page).to have_content('Placa já está em uso')
+
   end
 
 end

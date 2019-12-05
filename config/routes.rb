@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :clients
   resources :car_models
   resources :cars
+  resources :rentals
 end
