@@ -9,14 +9,19 @@ class CarsController < ApplicationController
 
     def new
         @car = Car.new
+        @subsidiaries = Subsidiary.all
+        @car_models = CarModel.all
     end
 
     def create
         @car = Car.new(car_params)
         if @car.save
+            flash[:notice] = 'Carro cadastrado com sucesso'
             redirect_to @car
         else
-            #flash.now[:alert] = 'Você deve informar todos os campos'
+            @subsidiaries = Subsidiary.all
+            @car_models = CarModel.all
+            flash[:alert] = 'Erro'
             render :new
         end
     end
@@ -38,7 +43,7 @@ class CarsController < ApplicationController
 private
 
     def car_params
-       params.require(:car).permit(:licence_plate, :color, :CarModel, :mileage, :Subsidiary)
+       params.require(:car).permit(:licence_plate, :color, :car_model_id, :mileage, :subsidiary_id)
     end
 
 end

@@ -1,9 +1,9 @@
 <h3>Carros</h3>
 <h1>Placa: <%= @car.licence_plate %></h1>
 <h1>Cor: <%= @car.color %></h1>
-<h1>Modelo: <%= @car.CarModel %></h1>
+<h1>Modelo: <%= @car.car_model.name %></h1>
 <h1>Quilometragem: <%= @car.mileage %></h1>
-<h1>Filial: <%= @car.Subsidiary %></h1>
+<h1>Filial: <%= @car.subsidiary.name %></h1>
 
 
 <%= link_to 'Voltar', root_path %>
