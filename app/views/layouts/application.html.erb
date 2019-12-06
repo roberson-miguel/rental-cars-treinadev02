@@ -10,8 +10,16 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <% if user_signed_in? %>
+      <p>Olá <%= current_user.email %></p>
+    <% else %>
+      <%= link_to 'Entrar', new_user_session_path %><br>
+    <% end%>
+
+    <p class="notice"> <%= notice %></p>
+    <p class="alert"> <%= alert %></p>
+
     <%= yield %>
   </body>
 </html>

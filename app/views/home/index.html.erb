@@ -2,11 +2,7 @@
 <h3>Bem vindo ao sistema de gestão de locação </h3>
 
 <br>
-<% if user_signed_in? %>
-    <p>Olá <%= current_user.email %></p>
-<% else %>
-    <%= link_to 'Entrar', new_user_session_path %><br>
-<% end%>
+
 <br>
 <%= link_to 'Fabricantes',  manufacturers_path %><br>
 <br>
