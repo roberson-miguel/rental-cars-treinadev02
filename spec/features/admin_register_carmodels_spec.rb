@@ -6,6 +6,10 @@ feature 'Admin register car models' do
     Manufacturer.create!(name: 'Honda')
     CarCategory.create!(name: 'A', daily_rate: '45', car_insurance: '15', third_party_insurance: '5') 
     CarCategory.create!(name: 'B', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
+    
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+
+    login_as(admin, scope: :user)
 
     visit root_path
     click_on 'Modelos de Carros'

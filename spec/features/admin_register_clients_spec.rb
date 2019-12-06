@@ -2,6 +2,11 @@ require 'rails_helper'
 
 feature 'Admin register Client' do
   scenario 'successfully' do
+
+    user = User.create(email: 'roberson@gmail.com', password:'123456789')
+
+    login_as(user)
+
     visit root_path
     click_on 'Clientes'
     click_on 'Novo Cliente'
@@ -18,6 +23,10 @@ feature 'Admin register Client' do
   end
 
   scenario 'and must fill in fields' do
+    user = User.create(email: 'roberson@gmail.com', password:'123456789')
+
+    login_as(user)
+
     visit new_client_path
     fill_in 'Nome', with: ''
     fill_in 'CPF', with: ''
@@ -28,6 +37,10 @@ feature 'Admin register Client' do
   end
 
   scenario 'and cpf and email must be unique' do
+    user = User.create(email: 'roberson@gmail.com', password:'123456789')
+
+    login_as(user)
+
     Client.create!(name: 'Roberson Miguel', document: '284.042.408-84', email: 'roberson@milguel.com')
     Client.create!(name: 'Elaine Cristina', document: '295.004.567-78', email: 'elaine@cristina.com')
     
@@ -40,4 +53,9 @@ feature 'Admin register Client' do
     expect(page).to have_content('CPF ou Email já está em uso')
   end
 
+  scenario 'must be authenticated' do
+    visit new_client_path
+
+    expect(current_path).to eq(new_user_session_path)
+  end
 end
