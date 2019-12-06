@@ -5,6 +5,8 @@ class RentalsController < ApplicationController
 
     def show
         @rental = Rental.find(params[:id])
+        @clients = Client.all
+        @car_categories = CarCategory.all
     end
 
     def new
@@ -28,6 +30,8 @@ class RentalsController < ApplicationController
 
     def edit
         @rental = Rental.find(params[:id])
+        @clients = Client.all
+        @car_categories = CarCategory.all
     end
 
     def update

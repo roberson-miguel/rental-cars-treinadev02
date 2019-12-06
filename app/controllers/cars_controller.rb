@@ -5,6 +5,8 @@ class CarsController < ApplicationController
 
     def show
         @car = Car.find(params[:id])
+        @subsidiaries = Subsidiary.all
+        @car_models = CarModel.all
     end
 
     def new
@@ -28,6 +30,8 @@ class CarsController < ApplicationController
 
     def edit
         @car = Car.find(params[:id])
+        @subsidiaries = Subsidiary.all
+        @car_models = CarModel.all
     end
 
     def update

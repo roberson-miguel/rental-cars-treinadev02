@@ -11,6 +11,7 @@ feature 'Admin edit car category' do
     click_on 'Categorias Carros'
     click_on 'A'
     click_on 'Editar'
+
     fill_in 'Nome', with: 'A'
     fill_in 'Diária', with: '45'
     fill_in 'Seguro', with: '15'

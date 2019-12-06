@@ -8,6 +8,7 @@ feature 'Admin edits manufacturer' do
     click_on 'Fabricantes'
     click_on 'Fiat'
     click_on 'Editar'
+    
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'
 
