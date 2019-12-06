@@ -29,6 +29,11 @@ class CarCategoriesController < ApplicationController
         end
     end
 
+    def destroy
+        @carcategory = CarCategory.find(params[:id])
+        @carcategory.destroy
+        redirect_to @carcategory, notice: "Categoria excluida com Sucesso"
+    end
 
 private
 

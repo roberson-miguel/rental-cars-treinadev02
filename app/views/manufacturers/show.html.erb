@@ -2,3 +2,4 @@
 
 <%= link_to 'Voltar', root_path %>
 <%= link_to 'Editar', edit_manufacturer_path(@manufacturer) %>
+<%= link_to 'Deletar', manufacturer_path(@manufacturer), method: :delete, data: { confirm: "Confirma exclusão do Fabricante: #{@manufacturer.name}?" } %>

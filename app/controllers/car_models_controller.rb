@@ -14,7 +14,7 @@ class CarModelsController < ApplicationController
     end
 
     def create
-        @carmodel = CarModel.create(carmodel_params)
+        @carmodel = CarModel.new(carmodel_params)
         if @carmodel.save
             flash[:notice] = "Modelo cadastrado com sucesso"
             redirect_to @carmodel
@@ -37,6 +37,12 @@ class CarModelsController < ApplicationController
         else 
             render :new 
         end
+    end
+
+    def destroy
+        @carmodel = CarModel.find(params[:id])
+        @carmodel.destroy
+        redirect_to @carmodel, notice: "Modelo excluido com Sucesso"
     end
 
 
