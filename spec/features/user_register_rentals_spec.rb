@@ -17,14 +17,14 @@ feature 'User register a rentals ' do
     fill_in 'Data Final', with: '31/12/2019'
     select 'Roberson Miguel', from: 'Cliente'
     select 'A', from: 'Categoria'
-    select 'Confirmada', from: 'Status'
+    #select 'Confirmada', from: 'Status'
     click_on 'Enviar'
 
     expect(page).to have_content('2019-12-23')
     expect(page).to have_content('2019-12-31')
     expect(page).to have_content('Roberson Miguel')
     expect(page).to have_content('A')
-    expect(page).to have_content('confirmada')
+    #expect(page).not_to have_content('confirmada')
 
   end
 

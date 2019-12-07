@@ -13,9 +13,12 @@
   <%= f.collection_select(:client_id, @clients, :id, :name) %>
   <%= f.label :car_category_id, 'Categoria' %>
   <%= f.collection_select(:car_category_id, @car_categories, :id, :name) %>
+  
 
-  <%= f.label :status_rental, 'Status' %>
-  <%= f.select(:status_rental, Rental.status_rentals.keys.map {|status| [status.titleize,status]}) %>
+  <% if current_user.admin? %>
+    <%= f.label :status_rental, 'Status' %>
+    <%= f.select(:status_rental, Rental.status_rentals.keys.map {|status| [status.titleize,status]}) %>
+  <% end %>
 
   <%= f.submit 'Enviar' %>
 <% end %>
