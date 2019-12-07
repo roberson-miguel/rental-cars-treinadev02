@@ -1,6 +1,9 @@
 class CarsController < ApplicationController
     
     #before_action :authenticate_user!, only: [:new]
+    before_action :authenticate_user! do
+        redirect_to new_user_session_path unless current_user.admin!
+    end
 
     def index
         @cars = Car.all
