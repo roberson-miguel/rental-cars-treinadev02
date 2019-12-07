@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 feature 'Admin delete manufacturers ' do
-  scenario 'delete with success' do          
+  scenario 'delete with success' do     
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)     
     Manufacturer.create!(name: 'Fiat')
 
     visit root_path

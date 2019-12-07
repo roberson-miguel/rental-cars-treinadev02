@@ -1,27 +1,41 @@
 <h1>Rental Cars </h1>
 <h3>Bem vindo ao sistema de gestão de locação </h3>
+<br>
+<% if user_signed_in? %>
+  <p>Olá <%= current_user.email %></p>
+  <%= link_to 'Sair', destroy_user_session_path, method: :delete %><br>
+      <br>
+      <% if current_user.employed? %>
+          <br>
+          <%= link_to 'Clientes',  clients_path %><br>
+          <br>
+          <%= link_to 'Agendar Locação', rentals_path %><br>
+          <br>
+      <% elsif  current_user.admin? %>
+          <br>
+          <%= link_to 'Clientes',  clients_path %><br>
+          <br>
+          <%= link_to 'Agendar Locação', rentals_path %><br>
+          <br>
+          <%= link_to 'Fabricantes',  manufacturers_path %><br>
+          <br>
+          <%= link_to 'Filiais',  subsidiaries_path %><br>
+          <br>
+          <%= link_to 'Categorias Carros',  car_categories_path %><br>
+          <br>
+          <%= link_to 'Modelos de Carros', car_models_path %><br>
+          <br>
+          <%= link_to 'Registrar Carros', cars_path %><br>
+          <br>
+      <% end %>
+<% else %>
+<%= link_to 'Entrar', new_user_session_path %><br>
+<% end %>
 
-<br>
 
-    <% if user_signed_in? %>
-      <p>Olá <%= current_user.email %></p>
-      <%= link_to 'Sair', destroy_user_session_path, method: :delete %><br>
-    <% else %>
-      <%= link_to 'Entrar', new_user_session_path %><br>
-    <% end %>
 
-<br>
-<%= link_to 'Fabricantes',  manufacturers_path %><br>
-<br>
-<%= link_to 'Filiais',  subsidiaries_path %><br>
-<br>
-<%= link_to 'Clientes',  clients_path %><br>
-<br>
-<%= link_to 'Categorias Carros',  car_categories_path %><br>
-<br>
-<%= link_to 'Modelos de Carros', car_models_path %><br>
-<br>
-<%= link_to 'Registrar Carros', cars_path %><br>
-<br>
-<%= link_to 'Agendar Locação', rentals_path %><br>
+
+
+
+
 

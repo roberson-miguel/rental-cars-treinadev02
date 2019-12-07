@@ -23,7 +23,7 @@ feature 'User register Client' do
   end
 
   scenario 'and must fill in fields' do
-    user = User.create(email: 'roberson@gmail.com', password:'123456789')
+    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed)
 
     login_as(user)
 
@@ -37,7 +37,7 @@ feature 'User register Client' do
   end
 
   scenario 'and cpf and email must be unique' do
-    user = User.create(email: 'roberson@gmail.com', password:'123456789')
+    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed)
 
     login_as(user)
 

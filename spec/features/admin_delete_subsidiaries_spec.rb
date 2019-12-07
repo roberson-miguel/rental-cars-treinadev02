@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin delete subsidiaries ' do
   scenario 'delete with success' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
     Subsidiary.create(name: 'Sao Paulo', cnpj: '05.370.840/0001-07', address: 'Rua da filial 1')              
 
     visit root_path

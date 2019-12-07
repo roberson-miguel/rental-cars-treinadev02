@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin rental car' do
   scenario 'successfully' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
    
     car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
     client = Client.create!(name: 'Marcos Coccato', document: '284.042.408-84', email: 'roberson@milguel.com')
@@ -19,6 +21,11 @@ feature 'Admin rental car' do
   end
 
   scenario 'and return to home page' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
+   
+    
+
     car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
     client = Client.create!(name: 'Marcos Coccato', document: '284.042.408-84', email: 'roberson@milguel.com')
     rental = Rental.create!(start_date: '2019-12-23', end_date:'2019-12-31', client: client, car_category: car_category)

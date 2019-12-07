@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin edit clients' do
   scenario 'successfully' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
     Client.create!(name:'Roberson Miguel', document:'284.042.408-84', email:'xxxx')
 
     visit root_path

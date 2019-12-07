@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin edit carmodel' do
   scenario 'successfully' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
     manufacturer = Manufacturer.create!(name: 'Chevrolet')
     car_category = CarCategory.create!(name: 'A', daily_rate: '45', car_insurance: '15', third_party_insurance: '5')                 
     car_model = CarModel.create!(name: 'Corsa', year:'2015', motorization:'1.0', fuel_type:'Gasolina', manufacturer: manufacturer, car_category: car_category)

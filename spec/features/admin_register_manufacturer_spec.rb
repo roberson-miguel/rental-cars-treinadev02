@@ -2,10 +2,9 @@ require 'rails_helper'
 
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
-
-    user = User.create(email: 'roberson@gmail.com', password:'123456789')
-
-    login_as(user)
+  
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
 
 
     visit root_path
@@ -19,9 +18,8 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and must fill in fields' do
-    user = User.create(email: 'roberson@gmail.com', password:'123456789')
-
-    login_as(user)
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
 
     visit new_manufacturer_path
     fill_in 'Nome', with: ''
@@ -32,9 +30,8 @@ feature 'Admin register manufacturer' do
 
   scenario 'and name must be unique' do
 
-    user = User.create(email: 'roberson@gmail.com', password:'123456789')
-
-    login_as(user)
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
 
     Manufacturer.create!(name: 'Fiat')
 

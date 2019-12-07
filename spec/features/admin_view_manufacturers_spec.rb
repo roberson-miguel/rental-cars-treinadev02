@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin view manufacturers' do
   scenario 'successfully' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Volkswagen')
 
@@ -14,6 +16,8 @@ feature 'Admin view manufacturers' do
   end
 
   scenario 'and return to home page' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Volkswagen')
 

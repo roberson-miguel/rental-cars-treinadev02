@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin delete cars' do
   scenario 'delete car with success' do  
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
 
     manufacturer = Manufacturer.create!(name: 'Chevrolet')
     car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 

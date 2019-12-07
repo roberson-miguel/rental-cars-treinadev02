@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register Subsidiaries' do
   scenario 'successfully' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova Filial'
@@ -20,6 +22,8 @@ feature 'Admin register Subsidiaries' do
   end
 
   scenario 'and must fill in fields' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
     visit new_subsidiary_path
     fill_in 'Nome', with: ''
     fill_in 'CNPJ', with: ''
@@ -30,6 +34,8 @@ feature 'Admin register Subsidiaries' do
   end
 
   scenario 'and nome e cnpj must be unique' do
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    login_as(admin)
     Subsidiary.create!(name: 'Sao Paulo',cnpj: '05.370.840/0001-07', address: 'Rua da filial 1')
     Subsidiary.create!(name: 'Rio de Janeiro', cnpj: '05.370.840/0001-02', address: 'Rua do rio')
     
