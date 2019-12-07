@@ -3,6 +3,8 @@
 <p>Data Final: <%= @rental.end_date %></p>
 <P>Cliente: <%= @rental.client.name%>
 <p>Categoria:  <%= @rental.car_category.name %></p>
+<p>Status:  <%= @rental.status_rental %></p>
+
 
 <%= link_to 'Voltar', root_path %>
 <%= link_to 'Editar', edit_rental_path(@rental) %>

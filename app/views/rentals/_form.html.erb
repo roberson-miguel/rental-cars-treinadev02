@@ -13,5 +13,9 @@
   <%= f.collection_select(:client_id, @clients, :id, :name) %>
   <%= f.label :car_category_id, 'Categoria' %>
   <%= f.collection_select(:car_category_id, @car_categories, :id, :name) %>
+
+  <%= f.label :status_rental, 'Status' %>
+  <%= f.select(:status_rental, Rental.status_rentals.keys.map {|status| [status.titleize,status]}) %>
+
   <%= f.submit 'Enviar' %>
 <% end %>

@@ -64,4 +64,19 @@ feature 'Admin register cars' do
 
   end
 
+  scenario 'and mileage not must be less than or equal to zero' do
+    
+    visit new_car_path
+
+    fill_in 'Placa', with: ''
+    fill_in 'Cor', with: ''
+    #select '', from: 'Modelo'
+    fill_in 'Quilometragem', with: '-1'
+    #select '', from: 'Filial'
+    click_on 'Enviar'
+  
+    expect(page).to have_content('deve ser maior que zero')
+
+  end
+
 end

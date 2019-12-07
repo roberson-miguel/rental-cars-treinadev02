@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
     
-    #before_action :authenticate_user!, only: [:new]
+    before_action :authenticate_user!, only: [:new]
 
     def index
         @rentals = Rental.all
@@ -55,7 +55,7 @@ class RentalsController < ApplicationController
 private
 
     def rental_params
-       params.require(:rental).permit(:start_date, :end_date, :client_id, :car_category_id)
+       params.require(:rental).permit(:start_date, :end_date, :client_id, :car_category_id, :status_rental)
     end
 
 end
