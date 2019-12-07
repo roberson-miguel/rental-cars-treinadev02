@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin register a rentals ' do
+feature 'User register a rentals ' do
   scenario 'successfully' do
     client = Client.create!(name: 'Roberson Miguel', document: '284.042.408-84', email: 'roberson@milguel.com')
     car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 

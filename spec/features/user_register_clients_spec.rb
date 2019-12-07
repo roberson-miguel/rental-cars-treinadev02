@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-feature 'Admin register Client' do
+feature 'User register Client' do
   scenario 'successfully' do
 
-    user = User.create(email: 'roberson@gmail.com', password:'123456789')
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
 
-    login_as(user)
+    login_as(admin, scope: :user)
 
     visit root_path
     click_on 'Clientes'
