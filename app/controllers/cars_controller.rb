@@ -39,6 +39,8 @@ class CarsController < ApplicationController
 
     def update
         @car = Car.find(params[:id])
+        @subsidiaries = Subsidiary.all
+        @car_models = CarModel.all
         if @car.update(car_params)
             redirect_to @car
         else 

@@ -38,7 +38,7 @@ feature 'Admin register cars' do
     #select '', from: 'Filial'
     click_on 'Enviar'
   
-    expect(page).to have_content('Não pode está em branco')
+    expect(page).to have_content('não pode está em branco')
 
   end
 
@@ -60,7 +60,7 @@ feature 'Admin register cars' do
     select 'Sao Paulo', from: 'Filial'
     click_on 'Enviar'
 
-    expect(page).to have_content('Placa já está em uso')
+    expect(page).to have_content('já está em uso')
 
   end
 
