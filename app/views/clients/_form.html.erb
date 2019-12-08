@@ -4,7 +4,7 @@
   <% end %>
 <% end %>
 
-<% if current_user.admin? %>
+
   <%= form_for (client) do |f| %>
     <%= f.label :name, 'Nome' %>
     <%= f.text_field :name %>
@@ -14,4 +14,3 @@
     <%= f.text_field :email %>
     <%= f.submit 'Enviar' %>
   <% end %>
-<% end %>
