@@ -1,9 +1,7 @@
 class ClientsController < ApplicationController
+    before_action :authenticate_user! 
+    before_action :authorize_admin
 
-    before_action :authenticate_user! do
-        redirect_to new_user_session_path unless current_user.admin!
-    end
-    
     def index
        @clients = Client.all
     end
@@ -48,6 +46,13 @@ class ClientsController < ApplicationController
     end
 
 private
+    def authorize_admin
+        unless current_user.admin?
+        flash[:alert] = "Voce não tem autorização"
+        redirect_to root_path
+            
+        end
+    end
 
     def client_params
         params.require(:client).permit(:name, :document, :email)

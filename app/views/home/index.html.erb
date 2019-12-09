@@ -1,7 +1,8 @@
 <h1>Rental Cars </h1>
 <h3>Bem vindo ao sistema de gestão de locação </h3>
 <br>
-<% if user_signed_in? %>
+
+<% if user_signed_in? %> 
   <p>Olá <%= current_user.email %></p>
   <%= link_to 'Sair', destroy_user_session_path, method: :delete %><br>
       <br>
@@ -11,7 +12,7 @@
           <br>
           <%= link_to 'Agendar Locação', rentals_path %><br>
           <br>
-      <% elsif  current_user.admin? %>
+      <% else  current_user.admin? %>
           <br>
           <%= link_to 'Clientes',  clients_path %><br>
           <br>

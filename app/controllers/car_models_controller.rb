@@ -1,9 +1,6 @@
 class CarModelsController < ApplicationController
-    
-    #before_action :authenticate_user!, only: [:new]
-    before_action :authenticate_user! do
-        redirect_to new_user_session_path unless current_user.admin!
-    end
+    before_action :authenticate_user! 
+    before_action :authorize_admin
     
     def index
         @carmodels = CarModel.all
@@ -57,6 +54,13 @@ class CarModelsController < ApplicationController
 
 
 private
+    def authorize_admin
+        unless current_user.admin?
+        flash[:alert] = "Voce não tem autorização"
+        redirect_to root_path
+            
+        end
+    end
 
     def carmodel_params
        params.require(:car_model).permit(:name, :year, :manufacturer_id, :motorization, :car_category_id, :fuel_type)
