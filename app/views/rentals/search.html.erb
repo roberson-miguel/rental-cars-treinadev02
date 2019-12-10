@@ -1,8 +1,28 @@
-<h1>Resultado da Busca </h1>
 
-<p>Código:  <%= @rental.reservation_code %></p>
+<%= form_for @rental do |f| %>
+  <%= f.label :start_date, 'Data Inicial' %>
+  <%= f.text_field :start_date %>
+  <%= f.label :end_date, 'Data Final' %>
+  <%= f.text_field :end_date %>
+  <br>
+  <br>
+  <%= f.label :client_id, 'Cliente' %>
+  <%= f.collection_select(:client_id, @clients, :id, :description) %>
+  <%= f.label :car_category_id, 'Categoria' %>
+  <%= f.collection_select(:car_category_id, @car_categories, :id, :name) %>
+ 
+  
+  <% if current_user.admin? %>
+    <%= f.label :status_rental, 'Status' %>
+    <%= f.select(:status_rental, Rental.status_rentals.keys.map {|status| [status.titleize,status]}) %>
+  <% end %>
+  <br>
+  <br>
+   <%= f.label :reservation_code, "Código" %>
+   <%= f.text_field :reservation_code %>
 
+  <br>
+  <br>
 
-<%= link_to 'Voltar', root_path %>
-<%= link_to 'Editar', edit_rental_path(@rental) %>
-<%= link_to 'Deletar', rental_path(@rental), method: :delete, data: { confirm: "Confirma exclusão do agentamento?" } %>
+  <%= f.submit 'Enviar' %>
+<% end %>

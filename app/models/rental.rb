@@ -1,8 +1,16 @@
 class Rental < ApplicationRecord
   belongs_to :client
   belongs_to :car_category
+  belongs_to :subsidiary
 
   enum status_rental: [ :scheduled, :in_progress ] 
+
+  after_initialize :set_default_status_rental, :if => :new_record?
+  
+  def set_default_status_rental
+    self.status_rental ||= :in_progress
+  end
+  
 
   #validate :end_date_must_be_greater_than_start_date
  

@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
     
-    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :search]
     before_action :set_find, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -10,11 +10,13 @@ class RentalsController < ApplicationController
     def show
         @clients = Client.all
         @car_categories = CarCategory.all
+        @subsidiaries = Subsidiary.all
     end
 
     def new
         @rental = Rental.new
         @clients = Client.all
+        @subsidiaries = Subsidiary.all
         @car_categories = CarCategory.all
     end
 
@@ -26,6 +28,7 @@ class RentalsController < ApplicationController
         else
             @clients = Client.all
             @car_categories = CarCategory.all
+            @subsidiaries = Subsidiary.all
             flash[:alert] = 'Erro'
             render :new
         end
@@ -33,6 +36,7 @@ class RentalsController < ApplicationController
 
     def edit
         @clients = Client.all
+        @subsidiaries = Subsidiary.all
         @car_categories = CarCategory.all
     end
 
@@ -50,6 +54,9 @@ class RentalsController < ApplicationController
     end
 
     def search
+        @clients = Client.all
+        @car_categories = CarCategory.all
+        @subsidiaries = Subsidiary.all
         if params[:search]
             @rentals = Rental.search(params[:search])  
         else
@@ -73,7 +80,9 @@ private
     end
 
     def rental_params
-       params.require(:rental).permit(:start_date, :end_date, :client_id, :car_category_id, :status_rental, :reservation_code)
+       params.require(:rental).permit(:start_date, :end_date, :client_id, 
+                                      :car_category_id, :status_rental, 
+                                      :reservation_code, :subsidiary_id)
     end
 
 end

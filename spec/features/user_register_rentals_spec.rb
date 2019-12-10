@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User register a rentals ' do
   scenario 'successfully as user' do
-    
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
     client = Client.create!(name: 'Roberson Miguel', document: '284.042.408-84', email: 'roberson@milguel.com')
     car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
     user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed)   
@@ -24,6 +24,7 @@ feature 'User register a rentals ' do
     expect(page).to have_content('Roberson Miguel')
     expect(page).to have_content('A')
     expect(page).to have_content('Código')
+    expect(page).to have_content('Freguesia')
     #expect(page).to have_content('Confirmada')
 
   end
@@ -31,7 +32,7 @@ feature 'User register a rentals ' do
   scenario 'successfully as Admin' do
     client = Client.create!(name: 'Roberson Miguel', document: '284.042.408-84', email: 'roberson@milguel.com')
     car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
-
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
     admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
 
     login_as(admin, scope: :user)
@@ -44,6 +45,7 @@ feature 'User register a rentals ' do
     select "#{client.name} - #{client.document}", from: 'Cliente'
     select 'A', from: 'Categoria'
     select 'Scheduled', from: 'Status'
+    select 'Freguesia', from: 'Filial'
     click_on 'Enviar'
 
     expect(page).to have_content('2019-12-23')
@@ -52,6 +54,7 @@ feature 'User register a rentals ' do
     expect(page).to have_content('A')
     expect(page).to have_content('Código')
     expect(page).to have_content('scheduled')
+    expect(page).to have_content('Freguesia')
 
   end
 
