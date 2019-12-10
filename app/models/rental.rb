@@ -7,7 +7,8 @@ class Rental < ApplicationRecord
   enum status_rental: [ :scheduled, :in_progress ] 
 
   after_initialize :set_default_status_rental, :if => :new_record?
-  
+  after_initialize :ger_reservation_code, :if => :new_record?
+
   def set_default_status_rental
     self.status_rental ||= :in_progress
   end
@@ -24,6 +25,10 @@ class Rental < ApplicationRecord
  
   def self.search(query)
     where("reservation_code like ?","%#{query}%")
+  end
+
+  def ger_reservation_code 
+    self.reservation_code = rand(0..999999)
   end
 
 end
