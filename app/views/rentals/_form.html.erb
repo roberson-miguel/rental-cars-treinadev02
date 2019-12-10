@@ -13,6 +13,7 @@
   <br>
   <%= f.label :client_id, 'Cliente' %>
   <%= f.collection_select(:client_id, @clients, :id, :description) %>
+  
   <%= f.label :car_category_id, 'Categoria' %>
   <%= f.collection_select(:car_category_id, @car_categories, :id, :name) %>
   
@@ -21,14 +22,20 @@
   <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :name) %>
 
   
-  <% if current_user.admin? %>
-    <%= f.label :status_rental, 'Status' %>
-    <%= f.select(:status_rental, Rental.status_rentals.keys.map {|status| [status.titleize,status]}) %>
-  <% end %>
+      <% if current_user.admin? %>
+        <%= f.label :status_rental, 'Status' %>
+        <%= f.select(:status_rental, Rental.status_rentals.keys.map {|status| [status.titleize,status]}) %>
+      <% end %>
   <br>
   <br>
-   <%= f.label :reservation_code, "Código" %>
-   <%= f.text_field :reservation_code %>
+  
+  <%= f.label :reservation_code, "Código" %>
+  <%= f.text_field :reservation_code %>
+  <br>
+  <br>
+
+  <%= f.label :user_id, "Usuário" %>
+	<%= f.collection_select(:user_id, @users, :id, :email) %>
 
   <br>
   <br>

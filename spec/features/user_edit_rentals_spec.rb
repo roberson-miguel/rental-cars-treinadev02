@@ -9,7 +9,7 @@ feature 'User edit rentals' do
                             client: client, car_category: car_category, subsidiary: subsidiary,
                             reservation_code: 'BBB123')
 
-    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary: subsidiary)
 
     login_as(user)
 

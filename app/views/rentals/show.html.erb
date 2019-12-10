@@ -7,6 +7,7 @@
 <p>Status:  <%= @rental.status_rental %></p>
 <p>Código:  <%= @rental.reservation_code %></p>
 <p>Filial: <%= @rental.subsidiary.name%><p>
+<p>Usuário: <%= @rental.users.try(:email) %>
 
 <br>
 

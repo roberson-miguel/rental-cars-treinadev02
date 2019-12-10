@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
   
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    subsidiary = Subsidiary.create(name: 'Sao Paulo', cnpj: '05.370.840/0001-07', address: 'Rua da filial 1')  
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin,
+                        subsidiary: subsidiary)
     login_as(admin)
 
 
@@ -18,7 +20,9 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and must fill in fields' do
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    subsidiary = Subsidiary.create(name: 'Sao Paulo', cnpj: '05.370.840/0001-07', address: 'Rua da filial 1')  
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin,
+                        subsidiary: subsidiary)
     login_as(admin)
 
     visit new_manufacturer_path
@@ -30,7 +34,9 @@ feature 'Admin register manufacturer' do
 
   scenario 'and name must be unique' do
 
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    subsidiary = Subsidiary.create(name: 'Sao Paulo', cnpj: '05.370.840/0001-07', address: 'Rua da filial 1')  
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin,
+                        subsidiary: subsidiary)
     login_as(admin)
 
     Manufacturer.create!(name: 'Fiat')

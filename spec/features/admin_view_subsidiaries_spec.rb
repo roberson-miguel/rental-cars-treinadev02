@@ -2,12 +2,11 @@ require 'rails_helper'
 
 feature 'Admin view subsidiaries' do
   scenario 'successfully' do
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    subsidiary = Subsidiary.create!(name: 'Sao Paulo',cnpj: '05.370.840/0001-07',
+                                    address: 'Rua da filial 1')
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary: subsidiary)
     login_as(admin)
    
-    Subsidiary.create!(name: 'Sao Paulo',cnpj: '05.370.840/0001-07',
-                       address: 'Rua da filial 1')
-
     visit root_path
     click_on 'Filiais'
     click_on 'Sao Paulo'
@@ -18,11 +17,10 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and return to home page' do
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    subsidiary = Subsidiary.create!(name: 'Sao Paulo',cnpj: '05.370.840/0001-07',
+                                    address: 'Rua da filial 1')
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary: subsidiary)
     login_as(admin)
-   
-    Subsidiary.create!(name: 'Sao Paulo',cnpj: '05.370.840/0001-07',
-                       address: 'Rua da filial 1')
 
     visit root_path
     click_on 'Filiais'
@@ -34,16 +32,16 @@ feature 'Admin view subsidiaries' do
   end
 
 
-  scenario 'if no exist subsidiary' do
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
-    login_as(admin)
-    
+  xscenario 'if no exist subsidiary' do
 
-      visit root_path
-      click_on 'Filiais'
+    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary:' ')
+    login_as(user)
+
+    visit root_path
+    click_on 'Filiais'
            
   
-      expect(page).to have_content('Não existe filiais cadastradas')
+    expect(page).to have_content('Não existe filiais cadastradas')
   end
   
   

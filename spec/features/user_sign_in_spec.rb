@@ -2,9 +2,10 @@ require 'rails_helper'
 
 feature 'user sign in' do
   scenario 'from home page' do  
-
-    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed)
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
+    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed, subsidiary: subsidiary)
    
+    
     visit root_path
     click_on 'Entrar'
 
@@ -31,7 +32,11 @@ feature 'user sign in' do
   end
 
   scenario 'does not see Log in link' do
-    user = User.create(email: 'roberson@gmail.com', password:'123456789')
+    
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
+    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed, subsidiary: subsidiary)
+
+
 
     visit root_path
     click_on 'Entrar'
@@ -58,8 +63,10 @@ feature 'user sign in' do
   end
     
   scenario 'and log out' do
-    user = User.create(email: 'roberson@gmail.com', password:'123456789')
-
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
+    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed, subsidiary: subsidiary)
+    
+    
     visit root_path
     click_on 'Entrar'
 
@@ -80,8 +87,10 @@ feature 'user sign in' do
   end
 
   scenario 'Emploeyd login not see links' do
-    user = User.create(email: 'ana@gmail', password:'123123', role: :employed)
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
+    user = User.create(email: 'ana@gmail', password:'123123', role: :employed, subsidiary: subsidiary)
       
+   
     visit root_path
     click_on 'Entrar'
 
@@ -108,20 +117,22 @@ feature 'user sign in' do
   end
 
   scenario 'Admin must see all links' do
-    user = User.create(email: 'ana@gmail', password:'123123', role: :admin)
-      
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
+    admin = User.create(email: 'ana@gmail', password:'123123', role: :admin, subsidiary: subsidiary)
+    
+    
     visit root_path
     click_on 'Entrar'
 
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
+    fill_in 'Email', with: admin.email
+    fill_in 'Senha', with: admin.password
     
     within('form') do
       click_on 'Entrar'
     end
 
     expect(current_path).to eq(root_path)
-    expect(page).to have_content("Olá #{user.email}")
+    expect(page).to have_content("Olá #{admin.email}")
     expect(page).to have_link('Sair')
     
     expect(page).to have_link('Clientes')

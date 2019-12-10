@@ -21,13 +21,18 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
- 
+ <br>
   <div class="field">
-    <%= f.label :role, 'Role' %><br />
+    <%= f.label :role, 'Função' %><br />
     <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+    
   </div>
-
-
+<br>
+  <div class="field">
+      <%= f.label :subsidiary, 'Filial' %><br />
+      <%= f.select(:subsidiary, User.subsidiaries.keys.map {|subsidiary| [subsidiary.titleize,subsidiary]}) %>
+  </div>
+<br>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

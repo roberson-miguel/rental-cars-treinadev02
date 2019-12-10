@@ -5,7 +5,7 @@ feature 'User register a rentals ' do
     subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
     client = Client.create!(name: 'Roberson Miguel', document: '284.042.408-84', email: 'roberson@milguel.com')
     car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
-    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed)   
+    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed, subsidiary: subsidiary)   
     login_as(user, scope: :user)
 
     visit root_path
@@ -33,7 +33,7 @@ feature 'User register a rentals ' do
     client = Client.create!(name: 'Roberson Miguel', document: '284.042.408-84', email: 'roberson@milguel.com')
     car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
     subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary: subsidiary)
 
     login_as(admin, scope: :user)
     visit root_path
@@ -63,10 +63,11 @@ feature 'User register a rentals ' do
   end
 
   xscenario 'campos vazios' do
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
     client = Client.create!(name: 'Roberson Miguel', document: '284.042.408-84', email: 'roberson@milguel.com')
     car_category = CarCategory.create!(name: 'A', daily_rate: '50', car_insurance: '20', third_party_insurance: '10') 
 
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary: subsidiary)
 
     login_as(admin, scope: :user)
     visit root_path

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_113042) do
+ActiveRecord::Schema.define(version: 2019_12_10_143952) do
 
   create_table "car_categories", force: :cascade do |t|
     t.string "name"
@@ -70,9 +70,11 @@ ActiveRecord::Schema.define(version: 2019_12_10_113042) do
     t.integer "status_rental"
     t.string "reservation_code"
     t.integer "subsidiary_id"
+    t.integer "user_id"
     t.index ["car_category_id"], name: "index_rentals_on_car_category_id"
     t.index ["client_id"], name: "index_rentals_on_client_id"
     t.index ["subsidiary_id"], name: "index_rentals_on_subsidiary_id"
+    t.index ["user_id"], name: "index_rentals_on_user_id"
   end
 
   create_table "subsidiaries", force: :cascade do |t|
@@ -92,8 +94,10 @@ ActiveRecord::Schema.define(version: 2019_12_10_113042) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
+    t.integer "subsidiary_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["subsidiary_id"], name: "index_users_on_subsidiary_id"
   end
 
 end

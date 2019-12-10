@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'User register Client' do
   scenario 'successfully' do
-
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary: subsidiary)
     login_as(admin, scope: :user)
 
     visit root_path
@@ -22,7 +22,8 @@ feature 'User register Client' do
   end
 
   scenario 'and must fill in fields' do
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary: subsidiary)
     login_as(admin, scope: :user)
 
     visit new_client_path
@@ -35,7 +36,8 @@ feature 'User register Client' do
   end
 
   scenario 'and cpf and email must be unique' do
-    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin)
+    subsidiary = Subsidiary.create!(name: 'Freguesia', cnpj:'01.450.000/0043-09', address:'Rua motorizada, 456')
+    admin = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary: subsidiary)
     login_as(admin, scope: :user)
 
     Client.create!(name: 'Roberson Miguel', document: '284.042.408-84', email: 'roberson@milguel.com')
