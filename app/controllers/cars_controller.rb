@@ -2,13 +2,14 @@ class CarsController < ApplicationController
     
     before_action :authenticate_user! 
     before_action :authorize_admin
+    before_action :set_find, only: [:show, :edit, :update, :destroy]
 
     def index
         @cars = Car.all
     end
 
     def show
-        @car = Car.find(params[:id])
+        #@car = Car.find(params[:id])
         @subsidiaries = Subsidiary.all
         @car_models = CarModel.all
     end
@@ -33,13 +34,13 @@ class CarsController < ApplicationController
     end
 
     def edit
-        @car = Car.find(params[:id])
+        #@car = Car.find(params[:id])
         @subsidiaries = Subsidiary.all
         @car_models = CarModel.all
     end
 
     def update
-        @car = Car.find(params[:id])
+        #@car = Car.find(params[:id])
         @subsidiaries = Subsidiary.all
         @car_models = CarModel.all
         if @car.update(car_params)
@@ -50,7 +51,7 @@ class CarsController < ApplicationController
     end
 
     def destroy
-        @car = Car.find(params[:id])
+        #@car = Car.find(params[:id])
         @car.destroy
         redirect_to @car, notice: "Carro excluido com Sucesso"
     end
@@ -62,6 +63,10 @@ private
         redirect_to root_path
             
         end
+    end
+
+    def set_find
+        @car = Car.find(params[:id])
     end
 
     def car_params

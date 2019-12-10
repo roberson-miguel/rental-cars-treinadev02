@@ -2,13 +2,14 @@ class CarCategoriesController < ApplicationController
 
     before_action :authenticate_user! 
     before_action :authorize_admin
+    before_action :set_find, only: [:show, :edit, :update, :destroy]
    
     def index
         @carcategories = CarCategory.all
     end
 
     def show
-        @carcategory = CarCategory.find(params[:id])
+        #@carcategory = CarCategory.find(params[:id])
     end
 
     def new
@@ -21,11 +22,11 @@ class CarCategoriesController < ApplicationController
     end
 
     def edit
-        @carcategory = CarCategory.find(params[:id])
+        #@carcategory = CarCategory.find(params[:id])
     end
 
     def update
-        @carcategory = CarCategory.find(params[:id])
+        #@carcategory = CarCategory.find(params[:id])
         if @carcategory.update(category_params)
             redirect_to @carcategory
         else 
@@ -34,7 +35,7 @@ class CarCategoriesController < ApplicationController
     end
 
     def destroy
-        @carcategory = CarCategory.find(params[:id])
+        #@carcategory = CarCategory.find(params[:id])
         @carcategory.destroy
         redirect_to @carcategory, notice: "Categoria excluida com Sucesso"
     end
@@ -46,6 +47,10 @@ private
         redirect_to root_path
             
         end
+    end
+
+    def set_find
+        @carcategory = CarCategory.find(params[:id])
     end
 
     def category_params

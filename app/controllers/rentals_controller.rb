@@ -1,14 +1,13 @@
 class RentalsController < ApplicationController
     
-    before_action :authenticate_user!, only: [:new, :create]
-    #before_action :authorize_admin
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :set_find, only: [:show, :edit, :update, :destroy]
 
     def index
         @rentals = Rental.all
     end
 
     def show
-        @rental = Rental.find(params[:id])
         @clients = Client.all
         @car_categories = CarCategory.all
     end
@@ -33,13 +32,11 @@ class RentalsController < ApplicationController
     end
 
     def edit
-        @rental = Rental.find(params[:id])
         @clients = Client.all
         @car_categories = CarCategory.all
     end
 
     def update
-        @rental = Rental.find(params[:id])
         if @rental.update(rental_params)
             redirect_to @rental
         else 
@@ -48,12 +45,21 @@ class RentalsController < ApplicationController
     end
 
     def destroy
-        @rental = Rental.find(params[:id])
         @rental.destroy
         redirect_to @rental, notice: "Locação excluida com Sucesso"
     end
 
+    def search
+        if params[:search]
+            @rentals = Rental.search(params[:search])  
+        else
+            @rentals = Rental.all
+        end      
+    end
+
+
 private
+        
     def authorize_admin
         unless current_user.admin?
         flash[:alert] = "Voce não tem autorização"
@@ -62,8 +68,12 @@ private
         end
     end
 
+    def set_find
+        @rental = Rental.find(params[:id])
+    end
+
     def rental_params
-       params.require(:rental).permit(:start_date, :end_date, :client_id, :car_category_id, :status_rental)
+       params.require(:rental).permit(:start_date, :end_date, :client_id, :car_category_id, :status_rental, :reservation_code)
     end
 
 end

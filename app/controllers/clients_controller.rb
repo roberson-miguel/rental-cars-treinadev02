@@ -1,13 +1,14 @@
 class ClientsController < ApplicationController
     before_action :authenticate_user! 
     before_action :authorize_admin
-
+    before_action :set_find, only: [:show, :edit, :update, :destroy]
+  
     def index
        @clients = Client.all
     end
 
     def show
-        @client = Client.find(params[:id])
+        #@client = Client.find(params[:id])
     end
 
     def new
@@ -29,7 +30,7 @@ class ClientsController < ApplicationController
     end
 
     def update
-        @client = Client.find(params[:id])
+        #@client = Client.find(params[:id])
         if @client.update(client_params)
             redirect_to @client
             flash[:notice] = "Cliente alterado com sucesso"
@@ -40,7 +41,7 @@ class ClientsController < ApplicationController
     end
     
     def destroy
-        @client = Client.find(params[:id])
+        #@client = Client.find(params[:id])
         @client.destroy
         redirect_to @client, notice: "Cliente excluido com Sucesso"
     end
@@ -52,6 +53,10 @@ private
         redirect_to root_path
             
         end
+    end
+
+    def set_find
+        @client= Client.find(params[:id])
     end
 
     def client_params

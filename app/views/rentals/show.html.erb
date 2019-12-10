@@ -1,10 +1,13 @@
 <h1>Exibindo Agendamentos</h1>
 <p>Data Inicial: <%= @rental.start_date %></p>
 <p>Data Final: <%= @rental.end_date %></p>
-<P>Cliente: <%= @rental.client.name%>
+<P>Cliente: <%= @rental.client.description%>
+<br>
 <p>Categoria:  <%= @rental.car_category.name %></p>
 <p>Status:  <%= @rental.status_rental %></p>
+<p>Código:  <%= @rental.reservation_code %></p>
 
+<br>
 
 <%= link_to 'Voltar', root_path %>
 <%= link_to 'Editar', edit_rental_path(@rental) %>

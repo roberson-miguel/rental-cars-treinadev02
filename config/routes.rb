@@ -7,5 +7,10 @@ Rails.application.routes.draw do
   resources :clients
   resources :car_models
   resources :cars
-  resources :rentals
+  resources :rentals do
+    get 'search', on: :collection
+    #post 'start', on: :member
+  end
+
+
 end

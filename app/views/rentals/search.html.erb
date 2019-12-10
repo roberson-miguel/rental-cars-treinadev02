@@ -1,0 +1,8 @@
+<h1>Resultado da Busca </h1>
+
+<p>Código:  <%= @rental.reservation_code %></p>
+
+
+<%= link_to 'Voltar', root_path %>
+<%= link_to 'Editar', edit_rental_path(@rental) %>
+<%= link_to 'Deletar', rental_path(@rental), method: :delete, data: { confirm: "Confirma exclusão do agentamento?" } %>

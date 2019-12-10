@@ -2,13 +2,14 @@ class ManufacturersController < ApplicationController
 
     before_action :authenticate_user! 
     before_action :authorize_admin
+    before_action :set_find, only: [:show, :edit, :update, :destroy]
     
     def index
         @manufacturers = Manufacturer.all
     end
 
     def show
-        @manufacturer = Manufacturer.find(params[:id])
+        #@manufacturer = Manufacturer.find(params[:id])
     end
 
     def new
@@ -26,11 +27,11 @@ class ManufacturersController < ApplicationController
     end
 
     def edit
-        @manufacturer = Manufacturer.find(params[:id])
+        #@manufacturer = Manufacturer.find(params[:id])
     end
 
     def update
-        @manufacturer = Manufacturer.find(params[:id])
+        #@manufacturer = Manufacturer.find(params[:id])
         if @manufacturer.update(manufacturer_params)
             redirect_to @manufacturer
             flash[:notice] = "Fabricante alterado com sucesso"
@@ -41,7 +42,7 @@ class ManufacturersController < ApplicationController
     end
 
     def destroy
-        @manufacturer = Manufacturer.find(params[:id])
+        #@manufacturer = Manufacturer.find(params[:id])
         @manufacturer.destroy
         redirect_to @manufacturer, notice: "Fabricante excluido com Sucesso"
     end
@@ -53,6 +54,10 @@ private
         redirect_to root_path
             
         end
+    end
+
+    def set_find
+        @manufacturer= Manufacturer.find(params[:id])
     end
 
     def manufacturer_params

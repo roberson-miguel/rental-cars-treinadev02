@@ -4,7 +4,7 @@ feature 'user sign in' do
   scenario 'from home page' do  
 
     user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :employed)
-
+   
     visit root_path
     click_on 'Entrar'
 

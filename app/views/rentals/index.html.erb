@@ -1,11 +1,22 @@
-<h3>Locações</h3>
+<h3>Agenda de Locações</h3>
+
+
+<%= form_with url: search_rentals_path, local: true, method: :get do %>
+  <%= label_tag(:q, 'Código') %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag 'Buscar' %>
+<% end %>
+
+<br>
 
 <%= link_to 'Novo Agendamento', new_rental_path %><br>
+
+<br>
 
 <% if @rentals.empty? %>
     <p> Não existem agendaementos cadastrados</p>
 <% end %>
 
 <% @rentals.each do |rental| %>
-    <%= link_to rental.client.name, rental_path(rental) %><br>
+    <%= link_to rental.client.description, rental_path(rental) %><br>
 <% end %>

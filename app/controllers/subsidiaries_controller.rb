@@ -2,13 +2,14 @@ class SubsidiariesController < ApplicationController
 
     before_action :authenticate_user! 
     before_action :authorize_admin
+    before_action :set_find, only: [:show, :edit, :update, :destroy]
     
     def index
         @subsidiaries = Subsidiary.all
     end
 
     def show
-        @subsidiary = Subsidiary.find(params[:id])
+        #@subsidiary = Subsidiary.find(params[:id])
     end
 
     def new
@@ -26,12 +27,12 @@ class SubsidiariesController < ApplicationController
     end
 
     def edit
-        @subsidiary = Subsidiary.find(params[:id]) 
+        #@subsidiary = Subsidiary.find(params[:id]) 
     end
 
 
     def update
-        @subsidiary = Subsidiary.find(params[:id])
+        #@subsidiary = Subsidiary.find(params[:id])
         if @subsidiary.update(subsidiary_params)
             redirect_to @subsidiary
             flash[:notice] = "Filial alterada com sucesso"
@@ -42,7 +43,7 @@ class SubsidiariesController < ApplicationController
     end
 
     def destroy
-        @subsidiary = Subsidiary.find(params[:id])
+        #@subsidiary = Subsidiary.find(params[:id])
         @subsidiary.destroy
         redirect_to @subsidiary, notice: "Filial excluida com Sucesso"
     end
@@ -56,6 +57,10 @@ private
         redirect_to root_path
             
         end
+    end
+
+    def set_find
+        @subsidiary = Subsidiary.find(params[:id])
     end
 
     def subsidiary_params
