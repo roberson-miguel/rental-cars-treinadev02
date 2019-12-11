@@ -13,6 +13,8 @@ class RentalsController < ApplicationController
         @users = User.all
         @car_categories = CarCategory.all
         @subsidiaries = Subsidiary.all
+        @cars = @rental.car_category.cars
+        @car_models = CarModel.all      
     end
 
     def new
@@ -21,6 +23,9 @@ class RentalsController < ApplicationController
         @users = User.all
         @subsidiaries = Subsidiary.all
         @car_categories = CarCategory.all
+        @cars = @rental.car_category.crs
+        @car_models = CarModel.alls
+       
     end
 
     def create
@@ -33,6 +38,8 @@ class RentalsController < ApplicationController
             @users = User.all
             @car_categories = CarCategory.all
             @subsidiaries = Subsidiary.all
+            @cars = @rental.car_category.cars
+            @car_models = CarModel.all
             flash[:alert] = 'Erro'
             render :new
         end
@@ -59,15 +66,18 @@ class RentalsController < ApplicationController
     end
 
     def search
-        @clients = Client.all
-        @users = User.all
-        @car_categories = CarCategory.all
-        @subsidiaries = Subsidiary.all
-        if params[:search]
-            @rentals = Rental.search(params[:search])  
-        else
-            @rentals = Rental.all
-        end      
+        
+        #busca parcial
+        @rentals = Rental.where('reservation_code like ?', "%#{params[:q]}%")
+
+        #Busca exata do termo pesquisado
+        #@rentals = Rental.where(reservation_code: params[:q])
+        
+        #busca um unico registro encontrado
+        #@rental = Rental.find_by(reservation_code: params[:q])
+        
+        # exibe as pesquisa na index
+        #render :index 
     end
 
 
@@ -88,7 +98,8 @@ private
     def rental_params
        params.require(:rental).permit(:start_date, :end_date, :client_id, 
                                       :car_category_id, :status_rental, 
-                                      :reservation_code, :subsidiary_id, :user_id)
+                                      :reservation_code, :subsidiary_id, 
+                                      :user_id, :car_id, :car_model)
     end
 
     def configure_permitted_parameters

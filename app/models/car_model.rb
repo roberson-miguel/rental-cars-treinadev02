@@ -5,4 +5,8 @@ class CarModel < ApplicationRecord
   
     validates :name, :year, :motorization, :fuel_type, presence: {message: 'Você deve informar todos os campos'}
 
+    def information
+        "#{car_model.name} - #{car.license_plate}"
+    end
+
 end

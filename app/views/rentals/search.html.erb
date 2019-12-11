@@ -1,5 +1,9 @@
-<form accept-charset="UTF-8" action="/search" data-remote="true" method="get">
-  <label for="q">Search for:</label>
-  <input id="q" name="q" type="text" />
-  <input name="commit" type="submit" value="Search" data-disable-with="Search" />
-</form>
+<h1>Exibindo Buscas</h1>
+
+<% if @rentals.empty? %>
+    <p> Não existem agendamentos cadastrados</p>
+<% end %>
+
+<% @rentals.each do |rental| %>
+    <%= link_to rental.client.description, rental_path(rental) %><br>
+<% end %>
