@@ -18,7 +18,7 @@ class CarsController < ApplicationController
         @car = Car.new
         @subsidiaries = Subsidiary.all
         @car_models = CarModel.all
-        # @car.available!
+        
     end
 
     def create

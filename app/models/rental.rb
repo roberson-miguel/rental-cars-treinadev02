@@ -5,6 +5,9 @@ class Rental < ApplicationRecord
   #belongs_to :car
   #belongs_to :car_model
   has_many :users
+  
+  has_one :car_rental
+  has_one :car, through: :car_rental
 
   enum status_rental: [ :scheduled, :in_progress ] 
 
