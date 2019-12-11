@@ -10,7 +10,7 @@ feature 'Admin view rentals car' do
     client = Client.create!(name: 'Marcos Coccato', document: '284.042.408-84', email: 'roberson@milguel.com')
     rental = Rental.create!(start_date: '23/12/2019', end_date:'31/12/2019', 
                             client: client, car_category: car_category,
-                            reservation_code: 'BBB123', subsidiary: subsidiary)
+                            reservation_code: 999999, subsidiary: subsidiary)
     
     visit root_path
     click_on 'Agendar Locação'
@@ -20,7 +20,7 @@ feature 'Admin view rentals car' do
     expect(page).to have_content('2019-12-31')
     expect(page).to have_content('Marcos Coccato')
     expect(page).to have_content('A')
-    expect(page).to have_content('BBB123')
+    expect(page).to have_content("Código")
     expect(page).to have_content('Freguesia')
     expect(page).to have_link('Voltar')
     

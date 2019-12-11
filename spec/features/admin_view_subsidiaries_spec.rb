@@ -29,22 +29,6 @@ feature 'Admin view subsidiaries' do
     
 
     expect(current_path).to eq root_path
-  end
-
-
-  xscenario 'if no exist subsidiary' do
-
-    user = User.create(email: 'roberson@gmail.com', password:'123456789', role: :admin, subsidiary:' ')
-    login_as(user)
-
-    visit root_path
-    click_on 'Filiais'
-           
-  
-    expect(page).to have_content('Não existe filiais cadastradas')
-  end
-  
-  
-
+  end 
 
 end

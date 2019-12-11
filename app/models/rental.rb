@@ -8,6 +8,7 @@ class Rental < ApplicationRecord
 
   after_initialize :set_default_status_rental, :if => :new_record?
   after_initialize :ger_reservation_code, :if => :new_record?
+  #after_initialize :get_subsidiary, :if => :new_record?
 
   def set_default_status_rental
     self.status_rental ||= :in_progress
@@ -30,5 +31,9 @@ class Rental < ApplicationRecord
   def ger_reservation_code 
     self.reservation_code = rand(0..999999)
   end
+
+  #def get_subsidiary
+  #  subsidiary = subsidiary_id, @subsidiaries, :id, :name
+  #end
 
 end

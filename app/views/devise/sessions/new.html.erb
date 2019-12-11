@@ -11,13 +11,6 @@
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
-<!-- 
-  <div class="field">
-    <%= f.label :role, 'Role' %><br />
-    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-  </div>
--->
-
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>

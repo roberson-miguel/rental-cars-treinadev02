@@ -1,6 +1,6 @@
 class SubsidiariesController < ApplicationController
 
-    before_action :authenticate_user! 
+    before_action :authenticate_user!, only: [:destroy, :search]
     before_action :authorize_admin
     before_action :set_find, only: [:show, :edit, :update, :destroy]
     

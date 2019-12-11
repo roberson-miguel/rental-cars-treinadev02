@@ -1,11 +1,15 @@
 class User < ApplicationRecord
+  belongs_to :subsidiary
+  has_many :rentals, dependent: :destroy
+  
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :rentals, dependent: :destroy
-  belongs_to :subsidiary
+  
 
   enum role: [ :employed, :admin ]
   

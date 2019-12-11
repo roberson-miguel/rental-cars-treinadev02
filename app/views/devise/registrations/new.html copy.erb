@@ -28,6 +28,13 @@
   </div>
 <br>
 
+
+  <div class="field">
+      <%= f.label :subsidiary, 'Filial' %><br />
+      <%= f.select(:subsidiary, User.subsidiaries.keys.map {|subsidiary| [subsidiary.titleize,subsidiary]}) %>
+  </div>
+
+
 <br>
   <div class="actions">
     <%= f.submit "Sign up" %>

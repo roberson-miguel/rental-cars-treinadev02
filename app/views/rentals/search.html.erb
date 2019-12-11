@@ -1,28 +1,5 @@
-
-<%= form_for @rental do |f| %>
-  <%= f.label :start_date, 'Data Inicial' %>
-  <%= f.text_field :start_date %>
-  <%= f.label :end_date, 'Data Final' %>
-  <%= f.text_field :end_date %>
-  <br>
-  <br>
-  <%= f.label :client_id, 'Cliente' %>
-  <%= f.collection_select(:client_id, @clients, :id, :description) %>
-  <%= f.label :car_category_id, 'Categoria' %>
-  <%= f.collection_select(:car_category_id, @car_categories, :id, :name) %>
- 
-  
-  <% if current_user.admin? %>
-    <%= f.label :status_rental, 'Status' %>
-    <%= f.select(:status_rental, Rental.status_rentals.keys.map {|status| [status.titleize,status]}) %>
-  <% end %>
-  <br>
-  <br>
-   <%= f.label :reservation_code, "Código" %>
-   <%= f.text_field :reservation_code %>
-
-  <br>
-  <br>
-
-  <%= f.submit 'Enviar' %>
-<% end %>
+<form accept-charset="UTF-8" action="/search" data-remote="true" method="get">
+  <label for="q">Search for:</label>
+  <input id="q" name="q" type="text" />
+  <input name="commit" type="submit" value="Search" data-disable-with="Search" />
+</form>

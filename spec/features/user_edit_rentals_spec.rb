@@ -30,7 +30,7 @@ feature 'User edit rentals' do
     expect(page).to have_content("#{client.name} - #{client.document}")
     expect(page).to have_content('A')
     expect(page).to have_content('in_progres')
-    expect(page).to have_content('BBB123')
+    expect(page).to have_content('Código')
     expect(page).to have_content('Freguesia')
   end
 
