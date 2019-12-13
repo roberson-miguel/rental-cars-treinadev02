@@ -13,7 +13,7 @@ class RentalsController < ApplicationController
         @users = User.all
         @car_categories = CarCategory.all
         @subsidiaries = Subsidiary.all
-        @cars = @rental.car_category.cars
+        #@cars = @rental.car_category.cars
         @car_models = CarModel.all      
     end
 
@@ -23,9 +23,9 @@ class RentalsController < ApplicationController
         @users = User.all
         @subsidiaries = Subsidiary.all
         @car_categories = CarCategory.all
-        @cars = @rental.car_category.crs
-        @car_models = CarModel.alls
-       
+        #@cars = @rental.car_category.cars
+        @car_models = CarModel.all
+        #@rental.in_progress!
     end
 
     def create
@@ -38,7 +38,7 @@ class RentalsController < ApplicationController
             @users = User.all
             @car_categories = CarCategory.all
             @subsidiaries = Subsidiary.all
-            @cars = @rental.car_category.cars
+            #@cars = @rental.car_category.cars
             @car_models = CarModel.all
             flash[:alert] = 'Erro'
             render :new
